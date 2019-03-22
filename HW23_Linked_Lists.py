@@ -49,11 +49,13 @@ class linkedList:
             else:
                 prevNode.next = curNode.next
                 curNode = None
-    def length(self,headNode):
-        if headNode is None:
-            return 0
-        else:
-            return 1+self.length(headNode.next)
+    def length(self):
+        count = 0
+        curNode = self.head
+        while curNode != None:
+            curNode = curNode.next
+            count += 1
+        return count
     def swap(self,val,val1):
         if(val==val1): # case 1: same node
             print("Same node.")
@@ -92,6 +94,24 @@ class linkedList:
             prev = curNode
             curNode = temp
         self.head = prev # last iteration so last node will equal the head
+    def deletePos(self,pos):
+        curNode = self.head
+        if pos == 0:
+            self.head = curNode.nextcurNode = None
+            return
+        else:
+            count = 0
+            prev = None
+            while curNode != None and count != pos:
+                prev = curNode
+                curNode = curNode.next
+                count+=1
+            if curNode == None:
+                print("Node doesn't exist")
+                return
+            else:
+                prev.next = curNode.next
+                curNode = None
     def printList(self):
         curNode = self.head
         while curNode != None: # changed from curNode.next to curNode and it works correctly
@@ -110,7 +130,12 @@ link.insertAfter(link.head,8) # pop after head
 link.printList()
 link.deleteNode(5) # delete 5 node
 link.printList() 
+print("Current length of list: ",link.length(), '\n')
 link.swap(7,6) # swap 7 and 6 nodes
 link.printList()
 link.reverse()
+link.printList()
+link.insertAfter(link.head,8)
+link.printList()
+link.deletePos(2) # delete at position 2
 link.printList()
