@@ -1,6 +1,6 @@
 #
 # Sam Ghalayini
-# HW 22 Singly Linked Lists
+# HW 23 Singly Linked Lists
 #
 # CLASS NOTES + Homework
 class Node:
