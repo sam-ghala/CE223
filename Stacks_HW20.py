@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 18 15:34:22 2019
-
-@author: sjghalayini
-"""
+#
+# Sam Ghalayini
+# CE 232 Stacks HW20
+#
 #%% Regular Stack
 class Stack:
     def __init__(self):
@@ -49,6 +47,7 @@ def reverseStr(inputStr):
         rev += s.pop()
     return rev
 print(reverseStr("HELLO"))
+
 #%% Balanced parenthesis check
 def match(first,last):
     if first =='(' and last == ')':
@@ -63,19 +62,26 @@ def parenBal(string):
     index = 0
     bal = True
     s = Stack()
-    while index < len(string) and bal == True:
-        if string[index] in '([{':
-            s.push(string[index])
-        else:
-            if s.is_empty():
-                bal = False
-                return False
-            elif match(s.pop(),string[index]):
-                bal = True
+    if string == '':
+        bal = False
+        return False
+    elif string[-1] in '([{':
+        bal = False
+        return False
+    else:
+        while index < len(string) and bal == True:
+            if string[index] in '([{':
+                s.push(string[index])
             else:
-                bal = False
-                return False
-        index += 1
+                if s.is_empty():
+                    bal = False
+                    return False
+                elif match(s.pop(),string[index]):
+                    bal = True
+                else:
+                    bal = False
+                    return False
+            index += 1
     if s.is_empty() and bal == True:
         return True
 
@@ -83,6 +89,7 @@ print(parenBal('[]'))
 print(parenBal('()'))
 print(parenBal('{}'))
 print(parenBal('({[]})'))
+print(parenBal(''))
 print(parenBal('{(({')) # Dont know why this returns "None"
 print(parenBal('{(({))))))))'))
 print(parenBal('())'))
