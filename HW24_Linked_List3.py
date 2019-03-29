@@ -147,6 +147,7 @@ class linkedList:
     def rotate(self,k):
         p = self.head
         q = self.head
+        prev= None
         count = 0
         while p!=None and count < k:
             prev = p
@@ -154,17 +155,16 @@ class linkedList:
             count += 1
         p = prev
         while q != None:
-            prev.q
+            prev = q
             q = q.next
         q = prev
-        
         self.head = q.next
         p.next = self.head
-        p.next = None
+        q.next = None
     def swap_tail_head(self):
         last = self.head
         nextLast = None
-        while last != None: 
+        while last.next != None: 
             nextLast = last
             last = last.next
         last.next = self.head
@@ -195,6 +195,11 @@ link.printList()
 print("")
 print(link.occurs(5))
 print("")
+link.swap_tail_head()
+link.printList()
+print("Rotate:")
+link.rotate(2)
+link.printList()
 
 
 
